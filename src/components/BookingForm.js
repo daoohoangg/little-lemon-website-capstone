@@ -6,6 +6,7 @@ const formStyle ={
     width: '200px', 
     gap: '20px'
 };
+
 function BookingForm(props){
     const [date,setDate] = useState("");
     const [restime, setRestTime] = useState("");
@@ -37,14 +38,16 @@ function BookingForm(props){
             <input type="date" 
             id="res-date" 
             value={date} 
-            onChange={(e) => setDate(e.target.value)}/>
+            onChange={(e) => handleChange(e.target.value)}/>
 
             <label for="res-time">Choose time:</label>
             <select id="res-time" value={restime} onChange={(e) => setRestTime(e.target.value)}>
                 <option value="" >Select a Time</option>
                 {
                     props.availableTimes.availableTimes.map(availableTimes => {return <option key = 
-                    {availableTimes}>{availableTimes}</option>})
+                    {availableTimes}>
+                        {availableTimes}
+                    </option>})
                 }
             </select>
             <label for="guests">Number of guests</label>
@@ -57,7 +60,7 @@ function BookingForm(props){
                 <option>Birthday</option>
                 <option>Anniversary</option>
             </select>
-            <input type="submit" value="Make Your reservation"/>
+            <input type="submit" value="Make Your reservation" onChange={(e)=>clearForm}/>
             </form>
             </section>
         </header>
